@@ -1,0 +1,45 @@
+.goals_list{
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: column;
+    width: 30em
+
+}
+.goal_list_item{
+    margin-bottom: 1em;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1em;
+    height: 2em;
+    font-size: 1.5em;
+    border-bottom: 1px solid white;
+}
+
+.goal_page{
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: column;
+    width: 30em;
+}
+.sub_goals{
+    margin-left: 3em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.delete_btn{
+    display: flex;
+    align-items: center;
+    background-color: red;
+    width: 10em;
+    color: white;
+    height: 2em;
+    padding: 0.5em;
+    border-radius: 1em;
+}
+.goal_card_row{
+    display: flex;
+    justify-content: space-between;
+}

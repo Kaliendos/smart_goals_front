@@ -1,0 +1,62 @@
+    .modal{
+        height: 100%;
+        width: 100%;
+        background-color: rgba(0,0,0,0.4);
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transform: scale(0);
+    }
+
+    .modal.active{
+        transform: scale(1);
+    }
+
+    .modal_content{
+        position: relative;
+        padding: 3em;
+        border-radius: 1em;
+        background-color: white;
+
+    }
+    .form_content{
+        display: flex;
+        flex-direction: column;
+        gap:1em;
+    }
+    .form_row{
+        display: flex;
+        flex-direction: column;
+    }
+    .form_row>input{
+
+        height: 1.5em;
+        font-size: 16px;
+        padding: 0.5em;
+        border-radius: 1em;
+    }
+    .create_btn{
+        width: 100%;
+        margin-top: 1em;
+        background-color: green;
+        color: white;
+        height: 2em;
+        border-radius: 1em;
+        border: none;
+        font-size: 1.2em;
+    }
+    .close_btn{
+        color: white;
+        background-color: red;
+        border: none;
+        font-weight: 900;
+        width: 2em;
+        height: 2em;
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        border-radius: 5px;
+    }

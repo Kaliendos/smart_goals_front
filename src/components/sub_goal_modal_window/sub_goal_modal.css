@@ -1,0 +1,44 @@
+.goals_list{
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: column;
+    width: 20em
+}
+.goal_list_item{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1em;
+}
+
+.goal_page{
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: column;
+    width: 30em;
+}
+.sub_goals{
+    margin-left: 3em;
+}
+.delete_btn{
+    display: flex;
+    align-items: center;
+    background-color: red;
+    width: 10em;
+    color: white;
+    height: 2em;
+    padding: 0.5em;
+    border-radius: 1em;
+}
+.goal_card_row{
+    display: flex;
+    justify-content: space-between;
+}
+.form_row>input{
+    height: 1.5em;
+    font-size: 16px;
+    padding: 0.5em;
+    border-radius: 1em;
+
+}
