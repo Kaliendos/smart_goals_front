@@ -20,7 +20,3 @@ export  function is_authenticated(){
 function new_feature(){
   return 0;
 }
-
-function refresh_token(req) {
-    console.log(()=>req)
-}

@@ -1,0 +1,20 @@
+
+.login_form {
+    margin: auto;
+    min-height: 10em;
+    width: 30em;
+   margin-top: 20em;
+ 
+
+}
+
+.login_form_content {
+    display: flex;
+    flex-direction: column;
+  
+    gap: 1em;
+}
+.btn_group{
+    display: flex;
+    justify-content: space-between;
+}

@@ -1,14 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
 import { get_auth_token } from "./request";
 import { useNavigate } from "react-router-dom";
+import "./login.css"
+import StyledBtn from "../../UI/btn/btn";
+import { Link } from "react-router-dom"
 
 function LoginForm() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-  
-    const navigate = useNavigate();
- 
 
+    const navigate = useNavigate();
 
     const handleEmailChange = (event) => {
         setUsername(event.target.value);
@@ -39,28 +40,34 @@ function LoginForm() {
 
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label htmlFor="username">Email:</label>
-                <input
-                    type="text"
-                    id="username"
-                    value={username}
-                    onChange={handleEmailChange}
-                    required
-                />
+        <form onSubmit={handleSubmit} className="login_form">
+            <div className="login_form_content">
+                <div className="form_row">
+                    <input
+                        placeholder="email"
+                        type="text"
+                        id="username"
+                        value={username}
+                        onChange={handleEmailChange}
+                        required
+                    />
+                </div>
+                <div className="form_row">
+                    <input
+                        placeholder="пароль"
+                        type="password"
+                        id="password"
+                        value={password}
+                        onChange={handlePasswordChange}
+                        required
+                    /> 
+                </div>
+                <div className="btn_group">
+                    <StyledBtn handler={handleSubmit} text="Войти" backgroundColor="green" is_active={ true} />
+                    <Link to="/registration"><StyledBtn handler={() => { }} text="Регистрация" backgroundColor="green" /></Link>
+                </div>
+                
             </div>
-            <div>
-                <label htmlFor="password">Пароль:</label>
-                <input
-                    type="password"
-                    id="password"
-                    value={password}
-                    onChange={handlePasswordChange}
-                    required
-                />
-            </div>
-            <button type="submit">Войти</button>
         </form>
     );
 }

@@ -43,6 +43,3 @@
     display: flex;
     justify-content: space-between;
 }
-.sub_goal_is_done{
-    opacity: 0.3;
-}

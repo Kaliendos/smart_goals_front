@@ -5,11 +5,11 @@ import { Link } from "react-router-dom"
 import Modal from "../create_goal_modal_window/create_goal_modal"
 import GoalListItem from "./goal_list_item"
 import axios from 'axios'
+import StyledBtn from "../../UI/btn/btn"
 
 function Goals() {
     const [goals, setGoals] = useState([])
     const [modalActive, setModalActive] = useState(false)
-
     useEffect(()=>{
         const get_goals_list = async () => {
             try {
@@ -34,7 +34,8 @@ function Goals() {
             return <GoalListItem  key={goal.id} goal_data={goal} />
         
         })}
-            <button onClick={()=>setModalActive(true)}>Добавить цель</button>
+       
+            <StyledBtn handler= {()=>setModalActive(true)} text="Добавить цель" backgroundColor = "green" />
         </div> 
 
     
