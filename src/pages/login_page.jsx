@@ -1,12 +1,22 @@
+import { is_authenticated } from "../components/auth/auth_utils";
 import LoginForm from "../components/auth/login";
+import { useNavigate } from "react-router-dom"
+import Goals from "../components/goals/goal_list";
+import { useEffect } from "react";
 
-function LoginPage(){
-    return (
-        <>
-            
-            <LoginForm />
-       </>
+function LoginPage() {
+    const navigate = useNavigate()
+ 
+    useEffect(() => {
+        if (is_authenticated()) {
+            navigate("/")
+        }
+    }, [])
 
-    )
-}
+     return <LoginForm />
+    
+
+        
+ }
+
 export default LoginPage;

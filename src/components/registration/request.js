@@ -13,3 +13,9 @@ export async function register_user(username, password) {
   
     return user
 }
+
+export async function check_user_exists(username) {
+    const user = await axios.get(`http://localhost:8000/check_user_exists/?user=${username}`)
+   
+    return user.data
+}

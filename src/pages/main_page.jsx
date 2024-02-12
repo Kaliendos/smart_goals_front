@@ -10,12 +10,7 @@ import Goals from "../components/goals/goal_list";
 function MainPage() {
     
     const navigate = useNavigate()
-    useEffect(()=>{
-        if(!is_authenticated()){
-            navigate("/auth")
-            return
-        }
-   },[])
+ 
 
     
     return (

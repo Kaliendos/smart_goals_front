@@ -1,22 +1,29 @@
-const user = JSON.parse(localStorage.getItem("access"));
+const access = JSON.parse(localStorage.getItem("access"));
 const refresh = JSON.parse(localStorage.getItem("access"))
+const refreshLifeTimeMinutes = 0.5
 
-
-export default function getAuthHeader() {
-    if (user && user.access_token) {
-      return `Bearer ${user.access_token}`;
-    } else {
-      return null;
-    }
-  }
 
 export  function is_authenticated(){
-  if(user){
+  if(access){
     return true
   }
   return false
 }
 
-function new_feature(){
-  return 0;
+
+export function is_refresh_alive() {
+    const now = new Date().getTime()
+    const refresh_deadline = localStorage.getItem("refresh_deadline")
+    const diff = new Date(parseInt(refresh_deadline)).getTime() - now
+    
+    if (!refresh_deadline) {
+        return true
+    }
+    if (diff <= 0) {
+        return false
+    } else {
+        return true
+    }
+    
+  
 }

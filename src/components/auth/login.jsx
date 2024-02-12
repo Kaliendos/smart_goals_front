@@ -4,12 +4,18 @@ import { useNavigate } from "react-router-dom";
 import "./login.css"
 import StyledBtn from "../../UI/btn/btn";
 import { Link } from "react-router-dom"
+import { is_authenticated } from "./auth_utils";
+import Validator from "../../utils";
 
 function LoginForm() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
+    const [errPassword, setErrPassword] = useState("")
+
+
     const navigate = useNavigate();
+   
 
     const handleEmailChange = (event) => {
         setUsername(event.target.value);
@@ -22,18 +28,13 @@ function LoginForm() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const tokens = await get_auth_token(username, password);
+            const tokens = await get_auth_token(username, password)
             if (tokens.status === 200) {
                 navigate("/")
-                window.location.reload();
-            } else {
-                // Обработка ошибки при неудачной авторизации
-                // Например, вывод сообщения об ошибке
-                alert("Ошибка авторизации");
+            }else if (tokens.response.data.detail === "No active account found with the given credentials") {
+                setErrPassword("Неправильный логин или пароль")
             }
         } catch (error) {
-            // Обработка ошибки при получении токенов авторизации
-            // Например, вывод сообщения об ошибке или детали ошибки
             console.error("Ошибка при получении токенов авторизации:", error);
         }
     };
@@ -62,6 +63,7 @@ function LoginForm() {
                         required
                     /> 
                 </div>
+                <span color="red">{errPassword}</span>
                 <div className="btn_group">
                     <StyledBtn handler={handleSubmit} text="Войти" backgroundColor="green" is_active={ true} />
                     <Link to="/registration"><StyledBtn handler={() => { }} text="Регистрация" backgroundColor="green" /></Link>

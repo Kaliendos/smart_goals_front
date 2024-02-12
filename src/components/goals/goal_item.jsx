@@ -3,25 +3,38 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { delete_goal, patch_goal } from "./request";
 import SubGoalModal from "../sub_goal_modal_window/sub_goal_modal";
-import SubGoal from "../sub_goals/sub_goals";
+import SubGoal from "../sub_goals/sub_goals"
 import { date_format } from "../../utils";
+import { is_authenticated } from "../auth/auth_utils";
 
-function GoalItem(){
+
+function GoalItem() {
     const {goalId} = useParams()
     const navigate = useNavigate()
     const [goal, setGoal] = useState({})
     const [modalActive, setModalActive] = useState(false)
+    if (!is_authenticated()) {
+ 
+        navigate("/auth")
+    }
     async function get_goal_by_id(goal_id){
         try{
-        const goal = await axios.get(`http://localhost:8000/goals/${goal_id}`)
-        .catch((error)=>{
-            if (error.response && error.response.status === 404) {
-                navigate('/not-found');
-                return error.response
+        const goal_item = await axios.get(`http://localhost:8000/goals/${goal_id}`)
+            .catch((error) => {
+                return error
+            })
+            if (goal_item.data) {
+                return goal_item.data
             }
-          
-        })
-        return goal.data
+            if (goal_item.response.status === 404) {
+                navigate("/not_found/123")
+            }
+            if (goal_item.response.status === 401) {
+                navigate("/auth")
+            }
+            return
+            
+            
        }catch(e){
             if(!goal.data){
                 throw Error("Свойство goal.data пустое")

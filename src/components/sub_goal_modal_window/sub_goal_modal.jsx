@@ -2,10 +2,10 @@ import { useState } from "react";
 import { post_sub_goal } from "../sub_goals/request";
 import { date_validator } from "../../utils";
 
-
 function SubGoalModal({active, setActive, goal_id}){
     const [title, setTitle] = useState("")
     const [deadline, setDeadline] = useState("")
+
     const request_data = {
         "title": title,
         "deadline": deadline
@@ -20,11 +20,13 @@ function SubGoalModal({active, setActive, goal_id}){
         }
     }
  
-    async function submit_handler(){
+    async function submit_handler(e) {
+        e.preventDefault()
         if(is_valid(validators)){
             await post_sub_goal(goal_id, request_data)
         }
-        
+        setActive(false)
+        window.location.reload()
         
     }
     return(

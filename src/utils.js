@@ -1,4 +1,7 @@
-export  function date_format(inp_date){
+import axios from "axios"
+import { check_user_exists } from "./components/registration/request";
+
+export function date_format(inp_date) {
     /**
      [Форматирует дату к формату dd mm yyyy]
     */
@@ -22,9 +25,61 @@ export function date_validator(inp_date){
     return true
 }
 
-export function is_authenticated(status) {
-    if (status === 401) {
-        return false
+class Validator {
+    constructor() {
+        this.valdators = {}
     }
-    return true
+
+    is_valid() {
+  
+        for (var key in this.valdators) {
+            console.log(key)
+            if (this.valdators[key] === false) {
+                return false
+            }
+        }
+        return true
+    }
+
+    register_validators(validators) {
+        this.valdators = validators
+    }
+    get_Validators() {
+        return this.valdators
+    }
+
+    validate_password(password, max = 0, min = 0) {
+        if (password.length < min) {
+            return false
+        }
+        return true
+    }
+    validate_username(username) {
+        const pattern = /^[\w.-]+@[\w.-]+\.\w+$/;
+        if (pattern.test(username)) {
+            return true
+        } else {
+            return false
+        }
+    }
+    validate_repeat_password(password, password_repeat) {
+        if (password === password_repeat) {
+            return true
+        } else {
+            return false
+        }
+    }
+    async validate_username_not_exists(username) {
+        const is_user_exists = await check_user_exists(username)
+        
+
+        if (is_user_exists) {
+            return false
+        }
+        return true
+    }
 }
+
+
+export default Validator
+
