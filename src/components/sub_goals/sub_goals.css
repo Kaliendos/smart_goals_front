@@ -1,11 +1,35 @@
-.sub_goal_item{
+.sub_goal_item {
     display: flex;
+  
     width: 100%;
-    justify-content: space-between ;
+    justify-content: space-between;
     margin-bottom: 1em;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid white;
+    font-size: 1.3em;
+    padding-bottom: 0.2em;
 }
+
 
 .sub_goal_is_done {
     opacity: 0.3;
 }
+.checkbox_subgoal {
+    width: 1.3em;
+    height: 1.3em;
+    background-color: white;
+    border-radius: 50%;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+    .checkbox_subgoal:checked {
+        background-color: #29d96a;
+    }
+
+ .trash{
+     margin-left:1em;
+ }

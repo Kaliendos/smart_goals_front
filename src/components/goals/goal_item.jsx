@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { delete_goal, patch_goal } from "./request";
+import { delete_goal, patchGoalIsDone, patch_goal, patchGoalIsNotDone } from "./request";
 import SubGoalModal from "../sub_goal_modal_window/sub_goal_modal";
 import SubGoal from "../sub_goals/sub_goals"
-import { date_format } from "../../utils";
+import { date_format, time_delay } from "../../utils";
 import { is_authenticated } from "../auth/auth_utils";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faLeftLong, faTrashCan, faPenToSquare, faCirclePlus, faX, faCheck, faCircleQuestion } from '@fortawesome/free-solid-svg-icons'
 
 
 function GoalItem() {
@@ -45,11 +47,9 @@ function GoalItem() {
         const get_goal = async () => {
             try {
                 setGoal(await get_goal_by_id(goalId))
-            } catch(err){
+            } catch (err) {
                 console.log(err)
             }
- 
-            
         }
         get_goal()
     }, [])
@@ -67,37 +67,70 @@ function GoalItem() {
         await patch_goal(goal_id, {"managed_value": new_managed_value})
         window.location.reload()
     }
-    async function patch_max_value(goal_id){
-        const new_max_value = prompt("Введите значение")
-        await patch_goal(goal_id, {"max_value_to_achieve_goal": new_max_value})
+    async function patch_relevant(goal_id){
+        const new_relevant = prompt("Введите значение")
+        await patch_goal(goal_id, {"relevant": new_relevant})
         window.location.reload()
     }
- 
+    async function setGoalIsDone(goalId) {
+        const confirm = window.confirm("Подтвердите выполнение цели")
+        if (confirm) {
+            if (!goal.is_done) {
+                await patchGoalIsDone(goal.id)
+                window.location.reload()
+            } else {
+                await patchGoalIsNotDone(goal.id)
+                window.location.reload()
+            }
+        }
+    }
+
+
+    const backIcon = <FontAwesomeIcon icon={faLeftLong} style={{ color: "#ffffff", "font-size": "2.5em" }} />
+    const deleteGoalIcon = <FontAwesomeIcon icon={faX} style={{ color: "red", "font-size": "2em" }} />
+    const editIcon = <FontAwesomeIcon icon={faPenToSquare}  />
+    const addIcon = <FontAwesomeIcon icon={faCirclePlus} style={{ "font-size": "2em" }} />
+    const chekIcon = <FontAwesomeIcon icon={faCheck} style={{ "font-size": "2.5em", color: "green" }} />
+    const question = < FontAwesomeIcon icon={faCircleQuestion} style={{ color: "#ffffff", "font-size": "2.5em" }} />
     return (
         <>
-         <Link to="/">К списку целей</Link>
-        <div className="goal_page">
-                <h2>{goal.title}</h2>
-                <span>Дата окончания: {date_format(goal.deadline)}</span>
-            <p>Награда: {goal.reward}</p>
-            <div className="goal_card_row">
-                <p>Критерий достижимости: {goal.max_value_to_achieve_goal}</p>
-                <span onClick={()=>patch_max_value(goal.id)}/>
-            </div>
-            <div className="goal_card_row">
-                <span>Достигнуто: {goal.managed_value}</span>
-                <span onClick={()=>patch_managed_goal(goal.id)}>Edit</span>
-            </div>
-            <p>Прогресс: {goal.progress} %</p>
-            <h3>Подцели: </h3>
+            <div className={goal.is_done ? "goal_page_is_done" :  "goal_page"}>
+                <Link to="/">{backIcon }</Link>
+                <div className="goal_card_row">
+                    <h2>{goal.title}</h2>
+                    <div className="goal_card_row_btn_group">
+                        <span className="delete_btn" onClick={() => delete_goal_by_id(goal.id)}>{deleteGoalIcon}</span>
+                        <span onClick={()=>setGoalIsDone(goal.id) }>{chekIcon}</span>
+                    </div>
+                </div>
+                <div className="goal_card_row">
+                    <span>Дата окончания: {date_format(goal.deadline)} { time_delay(goal.deadline)}</span>
+                </div>
+                <div className="goal_card_row">
+                    <span>Цель считается достигнутой, когда: {goal.measurable}</span>
+                </div>
+                <div className="goal_card_row">
+                    <span>Параметр измеримости:  {goal.max_value_to_achieve_goal}</span>
+                </div>
+                <div className="goal_card_row">
+                    <span>Достигнуто: {goal.managed_value}</span>
+                    <span onClick={() => patch_managed_goal(goal.id)}>{editIcon}</span>
+                </div>
+                <div className="goal_card_row">
+                    <span>Прогресс: {goal.progress} %</span>
+                </div>
+                <div className="goal_card_row">
+                    <span>Если цель не будет достигнута, то: {goal.relevant} </span> <span onClick={() => patch_relevant(goal.id)}>{editIcon}</span>
+                </div>
+            <h2>Подцели: </h2>
             <div className="sub_goals">
             {goal.sub_goals?.map(sg=>{
                 return <SubGoal goal_id={goalId} subgoal={sg} />
             })}
             <SubGoalModal goal_id={goal.id} active={modalActive} setActive={()=>setModalActive(false)}/>
-            <span className="add_btn" onClick={()=>{setModalActive(true)}}>Добавить</span>
+                    <span className="add_btn" onClick={() => { setModalActive(true) }}>{ addIcon }</span>
             </div>
-            <span className="delete_btn" onClick={()=>delete_goal_by_id(goal.id)}>Отказаться от цели</span>
+          
         </div>
         </>
 

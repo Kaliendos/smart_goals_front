@@ -16,7 +16,9 @@ function RegForm() {
     const [usernameErr, setUsernameErr] = useState("");
     const [passwordErr, setPasswordErr] = useState("");
     const [repeatPasswordErr, setRepeatPasswordErr] = useState("")
+    const navigate = useNavigate()
     // Валидаторы полей
+
     const validator = new Validator()
  
 
@@ -74,11 +76,29 @@ function RegForm() {
      
         if (validator.is_valid()) {
             await register_user(username, password)
+            navigate("/auth")
         }
     };
+
+    const style = {
+        border: "none",
+        marginTop: "1em",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        width: "10em",
+        height: "2.5em",
+        padding: "0.5em",
+        borderRadius: "1em",
+        backgroundColor: "green",
+        fontSize: "1.1em",
+
+    }
+
  
 
     return (
+        <div>
         <form onSubmit={handleSubmit} className="login_form">
             <div className="login_form_content">
                 <div className="form_row">
@@ -107,20 +127,21 @@ function RegForm() {
                     <label className="error_msg" htmlFor="repeat_password">{repeatPasswordErr}</label>
                     <input
                         placeholder="повторите пароль"
-                        type="repeat_password"
+                        type="password"
                         id="password"
                         value={repeatPassword}
                         onChange={handleRepeatPasswordChange}
                         required
                     />
                 </div>
-                <div className="btn_group">
-                    <Link to ="/auth"> <span>Войти</span></Link>
+                    <div className="btn_group">
+                       <Link to="/auth"> <button style={style} type="button">Войти</button></Link>
                     <StyledBtn handler={(e) => { handleSubmit(e) }} text="Регистрация" backgroundColor="green" />
                 </div>
 
             </div>
-        </form>
+            </form>
+        </div>
 
     );
 }

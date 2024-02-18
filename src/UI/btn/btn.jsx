@@ -16,7 +16,7 @@ function StyledBtn(props) {
 
     }
     
-    return <button style={style} onClick={(e) => { props.handler(e) }}>{props.text}</button>
+    return <button style={style} onClick={(e) => { props.handler(e) }}>{props.text} </button>
 }
 
 export default StyledBtn

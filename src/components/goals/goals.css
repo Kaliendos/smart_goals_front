@@ -1,45 +1,94 @@
-.goals_list{
+.goals_list {
     display: flex;
     margin-left: auto;
     margin-right: auto;
     flex-direction: column;
-    width: 30em
-
+   
+    max-width: 50em;
 }
 .goal_list_item{
     margin-bottom: 1em;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     margin-top: 1em;
     min-height: 2em;
     font-size: 1.5em;
+    width: 100%;
     border-bottom: 1px solid white;
+
+}
+.goal_list_item_is_done>span {
+    margin-bottom: 1em;
+    display: flex;
+    justify-content: center;
+    margin-top: 1em;
+    min-height: 2em;
+    font-size: 1.5em;
+    width: 100%;
+    border-bottom: 1px solid white;
+    color:green;
+    opacity: 0.6;
 }
 
-.goal_page{
+@media (max-width: 500px){
+    .goals_list {
+        width: 80%;
+    }
+}
+
+.goal_page {
     display: flex;
     margin-left: auto;
     margin-right: auto;
     flex-direction: column;
     width: 30em;
 }
+
+
+@media (max-width: 500px) {
+    .goal_page {
+        width: 80%;
+    }
+}
+
 .sub_goals{
     margin-left: 3em;
     display: flex;
     flex-direction: column;
     align-items: center;
+    border-left: 1px solid white;
 }
-.delete_btn{
-    display: flex;
-    align-items: center;
-    background-color: red;
-    width: 10em;
-    color: white;
-    height: 2em;
-    padding: 0.5em;
-    border-radius: 1em;
+
+.addBtn{
+    margin-left: 50%;
 }
+
 .goal_card_row{
     display: flex;
     justify-content: space-between;
+    margin-top: 1em;
+}
+.goal_card_row > span {
+    font-size: 1.2em;
+}
+.goal_card_row_btn_group{
+    width: 10em;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.goal_page_is_done {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: column;
+    width: 30em;
+    opacity: 0.5;
+    color: green;
+}
+
+@media (max-width: 500px) {
+    .goal_page_is_done {
+        width: 80%;
+    }
 }

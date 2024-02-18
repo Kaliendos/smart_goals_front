@@ -5,6 +5,7 @@ a{
 }
 body {
     background: #35393b;
+    padding: 1em;
 }
 
 p {
@@ -21,4 +22,8 @@ h3 {
 
 h2 {
     color: white;
+}
+.logout {
+    margin-left: 90%;
+
 }

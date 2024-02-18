@@ -5,6 +5,9 @@ import { delete_sub_goal } from "./request"
 import { useState } from "react";
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faTrashCan } from '@fortawesome/free-solid-svg-icons'
+
 
 
 function SubGoal({ goal_id, subgoal }) {
@@ -29,12 +32,12 @@ function SubGoal({ goal_id, subgoal }) {
         setChecked(!checked)
         !checked ? setCssClass("sub_goal_is_done")  : setCssClass("")
     }
-
+    const trashIcon = <FontAwesomeIcon icon={faTrashCan} style={{ color: 'red' }} />
     return (
         <div className="sub_goal_item">
-            <input type="checkbox" id="scales" name="scales" checked={checked} onChange={()=>handleChange()} />
+            <input type="checkbox" className="checkbox_subgoal" id="scales" name="scales" checked={checked} onChange={() => handleChange()} />
             <span className={ cssClass } key={subgoal.id}>{subgoal.title} до {date_format(subgoal.deadline)}</span>
-            <span onClick={()=>delete_subgoal_handler()}>Удалить</span>
+            <span className="trash" onClick={() => delete_subgoal_handler()}>{ trashIcon}</span>
         </div>
     )
 }

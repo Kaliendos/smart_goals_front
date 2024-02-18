@@ -2,13 +2,17 @@
 import { Route, Routes } from 'react-router-dom';
 import MainPage from './pages/main_page';
 import LoginPage from './pages/login_page';
+import GreetingPage from './pages/greeting_page';
 import axios from 'axios';
 import GoalItem from './components/goals/goal_item';
-import RegistrationPage from './pages/registration_page';
 import RegForm from './components/registration/registration';
 import { is_authenticated, is_refresh_alive } from './components/auth/auth_utils';
-import { useNavigate } from "react-router-dom";
-import StyledBtn from './UI/btn/btn';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons'
+import Help from './components/help/help';
+
+
+
 
 
 if (localStorage.getItem('access')) {
@@ -31,7 +35,6 @@ function logout() {
     window.location.reload()
 
 }
-
 axios.interceptors.response.use((config) => {
     return config
 }, async (error) => {
@@ -53,19 +56,20 @@ axios.interceptors.response.use((config) => {
         return error
     }
 })
-
 function App() {
-     
+    
+    const element = < FontAwesomeIcon icon={faArrowRightFromBracket} style={{ color: "#ffffff", "font-size": "2.5em" }} />
+  
     return (
-        <>
-            {is_authenticated() ? < StyledBtn text="Выйти" handler={logout}/> : null}
-         <Routes>
+        <>  
+            <Help />
+            {is_authenticated() ? <span className="logout" title="Выйти" onClick={() => logout()}>{element} </span> : null}
+            <Routes>
             <Route path='/' element={<MainPage />} />
                 <Route path='/auth' element={<LoginPage />} />
                 <Route path='/registration' element={<RegForm />} />
-           <Route path='/:goalId'  element={<GoalItem />} />
- 
-    
+                <Route path='/:goalId' element={<GoalItem />} />
+                <Route path='/greeting' element={<GreetingPage />} />
           </Routes>
     
     </>

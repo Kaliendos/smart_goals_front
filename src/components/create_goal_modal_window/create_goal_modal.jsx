@@ -4,20 +4,20 @@ import { send_goal_data } from './request';
 
 const Modal = ({active, setActive}) => {
   const [title, setTitle] = useState("")
-  const [reward, setReward] = useState("")
+  const [measurable, setMeasurable] = useState("")
   const [max_value_to_achieve_goal, setMax_value_to_achieve_goal] = useState(0)
   const [managed_value, setManagedValue] = useState(0)
   const [deadline, setDeadline] = useState()
-
+    const [relevant, setRelevant] = useState("")
   const request_data = {
     "title": title,
     "max_value_to_achieve_goal": max_value_to_achieve_goal,
     "managed_value": managed_value,
-    "deadline": deadline,
+      "deadline": deadline,
+      "measurable": measurable,
+      "relevant": relevant
   }
-  if(reward !== ""){
-    request_data.reward = reward
-  }
+  
   async function submit_handler(e){
 
     await send_goal_data(request_data)
@@ -38,11 +38,13 @@ const Modal = ({active, setActive}) => {
                 />
               </div>
               <div className='form_row'>
-                <label htmlFor="reward">Как наградите себя?:</label>
+                <label htmlFor="reward">Как понять, что цель Достингнута?:</label>
                 <input
-                id='reward'
-                value={reward}
-                onChange={(e)=>setReward(e.target.value)}/>
+                id='measurable'
+                 value={measurable}
+                              onChange={(e) => setMeasurable(e.target.value)}
+                              required
+                          />
               </div>
               <div className='form_row'>
                 <label htmlFor="deadline">Когда цель должна быть достигнута?</label>
@@ -53,9 +55,18 @@ const Modal = ({active, setActive}) => {
                   onChange={(e)=>setDeadline(e.target.value)}
                   required
                   />
-              </div>
+               </div>
+               <div className='form_row'>
+                      <label htmlFor="relevant">Что произойдет, если цель не будет достигнута?:</label>
+                      <input
+                          id="relevant"
+                          type="text"
+                          value={relevant}
+                              onChange={(e) => setRelevant(e.target.value)}
+                           />
+                </div>
               <div className='form_row'>
-                <label htmlFor="achive_value">Критерий достижимости</label>
+                          <label htmlFor="achive_value">Параметр измеримости</label>
                 <input
                   id='achive_value'
                   type="number"

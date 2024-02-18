@@ -32,3 +32,19 @@ export  async function patch_goal(goal_id, data){
     return goal
 }
 
+
+export async function patchGoalIsDone(goal_id) {
+    const goal = await axios.patch(
+        `http://localhost:8000/goals/${goal_id}/`, {"is_done": true}).catch((err) => {
+            return err;
+        })
+    return goal
+}
+export async function patchGoalIsNotDone(goal_id) {
+    const goal = await axios.patch(
+        `http://localhost:8000/goals/${goal_id}/`, { "is_done": false }).catch((err) => {
+            return err;
+        })
+    return goal
+}
+

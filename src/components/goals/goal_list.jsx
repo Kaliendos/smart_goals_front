@@ -7,6 +7,9 @@ import GoalListItem from "./goal_list_item"
 import axios from 'axios'
 import StyledBtn from "../../UI/btn/btn"
 import { is_authenticated } from "../auth/auth_utils"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCirclePlus } from '@fortawesome/free-solid-svg-icons'
+
 
 
 function Goals() {
@@ -35,7 +38,7 @@ function Goals() {
         return
  
     }
-
+    const add_icon = <FontAwesomeIcon icon={faCirclePlus}  style={{color: "white", fontSize: "2.5em"}} />
 
     return(
           <div className="goals_list">
@@ -45,8 +48,8 @@ function Goals() {
              return <GoalListItem  key={goal.id} goal_data={goal} />
         
         })}
-       
-            <StyledBtn handler= {()=>setModalActive(true)} text="Добавить цель" backgroundColor = "green" />
+
+            <span className="addBtn" onClick={() => setModalActive(true)}>{add_icon}</span>
         </div> 
 
     

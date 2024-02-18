@@ -1,0 +1,24 @@
+
+li{
+    list-style: none;
+    font-size: 1.2em;
+}
+p {
+    font-size: 1.4em;
+}
+.content{
+    width: 50em;
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+}
+
+@media (max-width: 500px) {
+    .content {
+        width: 80%;
+    }
+}
+.getStarted {
+}

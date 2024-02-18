@@ -3,7 +3,7 @@
     margin: auto;
     min-height: 10em;
     width: 30em;
-   margin-top: 20em;
+    margin-top: 20em;
  
 
 }
@@ -17,4 +17,9 @@
 .btn_group{
     display: flex;
     justify-content: space-between;
+}
+@media (max-width: 500px) {
+    .login_form {
+        width: 98%;
+    }
 }

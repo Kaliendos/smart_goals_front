@@ -10,11 +10,35 @@ export function date_format(inp_date) {
     }
     const date = new Date(inp_date)
     const year = date.getUTCFullYear();
-    const month = String(date.getUTCMonth() + 1)
-    const day = String(date.getUTCDate()).padStart(2, '0');
+    let month = String(date.getUTCMonth() + 1)
+    let day = String(date.getUTCDate()).padStart(2, '0');
+    if (month < 10) {
+        month = `0${month}`
+    }
     return `${day} ${month} ${year} `
 }
 
+export function time_delay(inp_date) {
+    const deadline = new Date(inp_date)
+    const today = new Date()
+    let delay = deadline - today;
+    delay = Math.ceil(delay / (1000 * 60 * 60 * 24))
+    //const deay = (deadline - today) % 10
+    const division_remainder = delay % 10
+    switch (true) {
+        case (division_remainder === 1):
+            return ` через ${delay} день`
+        case (division_remainder < 5 && ( delay > 20 || delay < 10)):
+            return `через ${delay} дня`
+        case (division_remainder > 5):
+            return `через ${delay} дней`
+
+        case  (delay > 9 && delay < 21):
+            return `через ${delay} дней`
+        default:
+            break
+    }
+}
 
 export function date_validator(inp_date){
     let diff = ( new Date() - new Date(inp_date)) / (60 * 60 * 24 * 1000)
