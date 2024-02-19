@@ -12,7 +12,7 @@ function setRefreshDeadline() {
 export async function get_auth_token(username, password){
    
     const tokens =  await axios.post(
-        "http://localhost:8000/auth/jwt/create", {
+        "http://45.82.153.228/auth/jwt/create", {
         "username": username,
         "password": password
         }).catch(
