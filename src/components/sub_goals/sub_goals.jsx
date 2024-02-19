@@ -19,7 +19,7 @@ function SubGoal({ goal_id, subgoal }) {
         window.location.reload()
     }
     async function handleChange() {
-        const patch_subgoal = await axios.patch(`http://localhost:8000/goals/${goal_id}/sub_goals/${subgoal.id}/`, {
+        const patch_subgoal = await axios.patch(`goals/${goal_id}/sub_goals/${subgoal.id}/`, {
             is_done: !checked
         })
        

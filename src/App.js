@@ -10,18 +10,19 @@ import { is_authenticated, is_refresh_alive } from './components/auth/auth_utils
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons'
 import Help from './components/help/help';
+import Footer from './components/footer/footer';
 
 
 
 
-
+axios.defaults.baseURL = 'http://localhost:8000/';
 if (localStorage.getItem('access')) {
    axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(localStorage.getItem('access'))}`;
 }
 
 async function get_new_access_token() {
    //  alert(1)
-    const tokens = await axios.post("http://localhost:8000/auth/jwt/refresh/", {
+    const tokens = await axios.post("auth/jwt/refresh/", {
         "refresh": JSON.parse(localStorage.getItem('refresh'))
     })
      return tokens.data.access
@@ -62,15 +63,19 @@ function App() {
   
     return (
         <>  
-            <Help />
+         <Help />
             {is_authenticated() ? <span className="logout" title="Выйти" onClick={() => logout()}>{element} </span> : null}
-            <Routes>
+       < div className='main_content'>
+       <Routes>
             <Route path='/' element={<MainPage />} />
                 <Route path='/auth' element={<LoginPage />} />
                 <Route path='/registration' element={<RegForm />} />
                 <Route path='/:goalId' element={<GoalItem />} />
                 <Route path='/greeting' element={<GreetingPage />} />
           </Routes>
+
+       </div>
+          <Footer />
     
     </>
   

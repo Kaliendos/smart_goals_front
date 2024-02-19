@@ -12,7 +12,7 @@ function setRefreshDeadline() {
 export async function get_auth_token(username, password){
    
     const tokens =  await axios.post(
-        "http://localhost:8000/auth/jwt/create", {
+        "auth/jwt/create", {
         "username": username,
         "password": password
         }).catch(
@@ -20,7 +20,7 @@ export async function get_auth_token(username, password){
     if (tokens.status === 200) {
         localStorage.setItem("access", JSON.stringify(tokens.data.access))
         localStorage.setItem("refresh", JSON.stringify(tokens.data.refresh))
-        setRefreshDeadline() // Установить ключ refresh_deadline в localstorage
+        setRefreshDeadline() // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ refresh_deadline пїЅ localstorage
       
         return tokens
     }

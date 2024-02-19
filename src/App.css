@@ -3,9 +3,27 @@ a{
   color: black;
   
 }
+html {
+    height: 100%;
+  }
+  
 body {
     background: #35393b;
     padding: 1em;
+    height: 100%;
+}
+#root{
+    position: relative;
+	min-height: 100%;
+}
+footer{
+    position: absolute;
+ 
+ 
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
 }
 
 p {
@@ -25,5 +43,8 @@ h2 {
 }
 .logout {
     margin-left: 90%;
+
+}
+.main_content{
 
 }

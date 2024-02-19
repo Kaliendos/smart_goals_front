@@ -1,7 +1,7 @@
 import { is_authenticated } from "../components/auth/auth_utils";
 import LoginForm from "../components/auth/login";
 import { useNavigate } from "react-router-dom"
-import Goals from "../components/goals/goal_list";
+
 import { useEffect } from "react";
 
 function LoginPage() {

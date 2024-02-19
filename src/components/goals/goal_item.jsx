@@ -7,7 +7,9 @@ import SubGoal from "../sub_goals/sub_goals"
 import { date_format, time_delay } from "../../utils";
 import { is_authenticated } from "../auth/auth_utils";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLeftLong, faTrashCan, faPenToSquare, faCirclePlus, faX, faCheck, faCircleQuestion } from '@fortawesome/free-solid-svg-icons'
+import { 
+    faLeftLong, faPenToSquare, faCirclePlus, faX, faCheck, faCircleQuestion 
+} from '@fortawesome/free-solid-svg-icons'
 
 
 function GoalItem() {
@@ -21,7 +23,7 @@ function GoalItem() {
     }
     async function get_goal_by_id(goal_id){
         try{
-        const goal_item = await axios.get(`http://localhost:8000/goals/${goal_id}`)
+        const goal_item = await axios.get(`goals/${goal_id}`)
             .catch((error) => {
                 return error
             })
