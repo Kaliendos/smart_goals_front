@@ -1,5 +1,5 @@
 ﻿import './App.css';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate, Outlet} from 'react-router-dom';
 import MainPage from './pages/main_page';
 import LoginPage from './pages/login_page';
 import GreetingPage from './pages/greeting_page';
@@ -15,7 +15,7 @@ import Footer from './components/footer/footer';
 
 
 
-axios.defaults.baseURL = 'http://localhost:8000/';
+axios.defaults.baseURL = 'http://localhost:8000/'
 if (localStorage.getItem('access')) {
    axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(localStorage.getItem('access'))}`;
 }
@@ -58,6 +58,8 @@ axios.interceptors.response.use((config) => {
     }
 })
 function App() {
+    const navigate = useNavigate();
+  
     
     const element = < FontAwesomeIcon icon={faArrowRightFromBracket} style={{ color: "#ffffff", "font-size": "2.5em" }} />
   
@@ -67,13 +69,12 @@ function App() {
             {is_authenticated() ? <span className="logout" title="Выйти" onClick={() => logout()}>{element} </span> : null}
        < div className='main_content'>
        <Routes>
-            <Route path='/' element={<MainPage />} />
+            <Route path='/goals' element={<MainPage />} />
+            <Route path='/' element={<GreetingPage />} />
                 <Route path='/auth' element={<LoginPage />} />
                 <Route path='/registration' element={<RegForm />} />
-                <Route path='/:goalId' element={<GoalItem />} />
-                <Route path='/greeting' element={<GreetingPage />} />
+                <Route path='/goals/:goalId' element={<GoalItem />} />
           </Routes>
-
        </div>
        <Footer />
     </>

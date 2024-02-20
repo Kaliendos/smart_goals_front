@@ -60,7 +60,7 @@ function GoalItem() {
        const confirm = window.confirm("Вы уверены?");
        if(confirm){
         await delete_goal(goalId)
-        navigate("/")
+        navigate("/goals")
        }
     }
    
@@ -97,7 +97,7 @@ function GoalItem() {
     return (
         <>
             <div className={goal.is_done ? "goal_page_is_done" :  "goal_page"}>
-                <Link to="/">{backIcon }</Link>
+                <Link to="/goals">{backIcon }</Link>
                 <div className="goal_card_row">
                     <h2>{goal.title}</h2>
                     <div className="goal_card_row_btn_group">

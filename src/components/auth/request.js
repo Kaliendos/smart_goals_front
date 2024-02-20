@@ -10,13 +10,13 @@ function setRefreshDeadline() {
 
 
 export async function get_auth_token(username, password){
-   
     const tokens =  await axios.post(
         "auth/jwt/create", {
         "username": username,
         "password": password
         }).catch(
         e=>{return e.response})
+    
     if (tokens.status === 200) {
         localStorage.setItem("access", JSON.stringify(tokens.data.access))
         localStorage.setItem("refresh", JSON.stringify(tokens.data.refresh))

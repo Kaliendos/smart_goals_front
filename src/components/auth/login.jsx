@@ -29,7 +29,7 @@ function LoginForm() {
         try {
             const tokens = await get_auth_token(username, password)
             if (tokens.status === 200) {
-                navigate("/")
+                return navigate("/goals/")
             }else if (tokens.response.data.detail === "No active account found with the given credentials") {
                 setErrPassword("Неправильный логин или пароль")
             }

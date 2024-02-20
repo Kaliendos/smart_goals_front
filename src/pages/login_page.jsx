@@ -9,7 +9,7 @@ function LoginPage() {
  
     useEffect(() => {
         if (is_authenticated()) {
-            navigate("/")
+            navigate("/goals")
         }
     }, [])
 
