@@ -1,15 +1,23 @@
 .login_form {
-    margin: auto;
-    min-height: 10em;
-    width: 30em;
-    margin-top: 20em;
+    height: 100%;
+    width: 100%;
  
-
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
 }
 .login_form_content {
+    position: relative;
+    width: 30em;
     display: flex;
     flex-direction: column;
     gap: 1em;
+    position: absolute;
+   
 }
 .btn_group{
     display: flex;
@@ -21,7 +29,14 @@
     font-size: 1.1em;
 }
 @media (max-width: 500px) {
-    .login_form {
-        width: 98%;
+    .login_form_content {
+       
+        width: 90%;
+    }
+}
+
+@media (max-width: 900px) {
+    .login_form_content {
+        width: 90%;
     }
 }

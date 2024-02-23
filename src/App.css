@@ -15,10 +15,21 @@ body {
 	min-height: 100%;
 }
 .main_content{
-    min-height: 75vh;
+    min-height: 85vh;
+}
+@media (max-height:1000px) {
+    .main_content {
+        min-height: 80vh;
+    }
+}
+@media (max-height:700px) {
+    .main_content {
+        min-height: 70vh;
+    }
 }
 footer{
- 
+    margin: 3em;
+    max-height: 3em;
     bottom: 0;
     left: 0;
     right: 0;

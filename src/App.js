@@ -69,7 +69,7 @@ function App() {
         <>  
 
             {is_authenticated() ? <div className="top_icons"> <Help /><span className="logout" title="Выйти" onClick={() => logout()}>{element} </span></div> : null}
-       < div className='main_content'>
+            <div className="main_content">
        <Routes>
             <Route path='/goals' element={<MainPage />} />
             <Route path='/' element={<GreetingPage />} />
@@ -77,7 +77,7 @@ function App() {
                 <Route path='/registration' element={<RegForm />} />
                 <Route path='/goals/:goalId' element={<GoalItem />} />
           </Routes>
-       </div>
+            </div>
        <Footer />
     </>
   
