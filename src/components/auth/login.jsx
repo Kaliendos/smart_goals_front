@@ -1,11 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { get_auth_token } from "./request";
 import { useNavigate } from "react-router-dom";
 import "./login.css"
 import StyledBtn from "../../UI/btn/btn";
 import { Link } from "react-router-dom"
-import { is_authenticated } from "./auth_utils";
-import Validator from "../../utils";
+
 
 function LoginForm() {
     const [username, setUsername] = useState("");
@@ -66,7 +65,9 @@ function LoginForm() {
                 <span color="red">{errPassword}</span>
                 <div className="btn_group">
                     <StyledBtn handler={handleSubmit} text="Войти" backgroundColor="green" is_active={ true} />
-                    <Link to="/registration"><StyledBtn handler={() => { }} text="Регистрация" backgroundColor="green" /></Link>
+                    <Link to="/registration">
+                        <StyledBtn handler={() => { }} text="Регистрация" backgroundColor="green" />
+                    </Link>
                 </div>
                 
             </div>

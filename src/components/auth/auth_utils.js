@@ -1,6 +1,4 @@
 const access = JSON.parse(localStorage.getItem("access"));
-const refresh = JSON.parse(localStorage.getItem("access"))
-const refreshLifeTimeMinutes = 0.5
 
 
 export  function is_authenticated(){
@@ -24,6 +22,4 @@ export function is_refresh_alive() {
     } else {
         return true
     }
-    
-  
 }

@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import "./modal.css"
 import { send_goal_data } from './request';
+import { date_validator } from '../../utils';
 
 const Modal = ({active, setActive}) => {
   const [title, setTitle] = useState("")
@@ -8,7 +9,7 @@ const Modal = ({active, setActive}) => {
   const [max_value_to_achieve_goal, setMax_value_to_achieve_goal] = useState(0)
   const [managed_value, setManagedValue] = useState(0)
   const [deadline, setDeadline] = useState()
-    const [relevant, setRelevant] = useState("")
+  const [relevant, setRelevant] = useState("")
   const request_data = {
     "title": title,
     "max_value_to_achieve_goal": max_value_to_achieve_goal,
@@ -19,9 +20,13 @@ const Modal = ({active, setActive}) => {
   }
   
   async function submit_handler(e){
-
-    await send_goal_data(request_data)
+    e.preventDefault()
+    if(date_validator(deadline)){
+      await send_goal_data(request_data)
+      window.location.reload()
+    }
   }
+
   return(
     <div className={active ? 'modal active' : 'modal'} onClick={()=>setActive(false)}>
         <div className='modal_content' onClick={e => e.stopPropagation()}>

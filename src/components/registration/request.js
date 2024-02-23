@@ -2,7 +2,7 @@ import axios from "axios"
 
 
 export async function register_user(username, password) {
-    const user = await axios.post("http://localhost:8000/auth/users/",
+    const user = await axios.post("auth/users/",
         {
             "username": username,
             "password": password
@@ -15,7 +15,7 @@ export async function register_user(username, password) {
 }
 
 export async function check_user_exists(username) {
-    const user = await axios.get(`http://localhost:8000/check_user_exists/?user=${username}`)
+    const user = await axios.get(`check_user_exists/?user=${username}`)
    
     return user.data
 }
