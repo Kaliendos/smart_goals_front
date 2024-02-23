@@ -56,17 +56,19 @@ axios.interceptors.response.use((config) => {
        
         return error
     }
+    
+    return error.response
 })
 function App() {
-    const navigate = useNavigate();
+   
   
     
     const element = < FontAwesomeIcon icon={faArrowRightFromBracket} style={{ color: "#ffffff", "font-size": "2.5em" }} />
   
     return (
         <>  
-         <Help />
-            {is_authenticated() ? <span className="logout" title="Выйти" onClick={() => logout()}>{element} </span> : null}
+
+            {is_authenticated() ? <div className="top_icons"> <Help /><span className="logout" title="Выйти" onClick={() => logout()}>{element} </span></div> : null}
        < div className='main_content'>
        <Routes>
             <Route path='/goals' element={<MainPage />} />

@@ -14,6 +14,10 @@ p {
     align-items: center;
     color: white;
 }
+.btn_group{
+    display: flex;
+    flex-direction: column;
+}
 
 @media (max-width: 500px) {
     .content {

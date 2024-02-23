@@ -89,9 +89,10 @@ const Modal = ({active, setActive}) => {
                   onChange={(e)=>setManagedValue(e.target.value)}
                   required
                   />
-              </div>
+                      </div>
+              <button type="submit" className='create_btn'>Создать цель</button>
             </div>
-            <button type="submit" className='create_btn'>Создать цель</button>
+           
           </form>
         </div>
     </div>

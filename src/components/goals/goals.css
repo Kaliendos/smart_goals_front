@@ -1,9 +1,9 @@
 .goals_list {
+    margin-top: 2em;
     display: flex;
     margin-left: auto;
     margin-right: auto;
     flex-direction: column;
-   
     max-width: 50em;
 }
 .goal_list_item{
@@ -37,6 +37,7 @@
 }
 
 .goal_page {
+    margin-top: 2em;
     display: flex;
     margin-left: auto;
     margin-right: auto;
@@ -60,7 +61,7 @@
 }
 
 .addBtn{
-    margin-left: 50%;
+    margin: auto;
 }
 
 .goal_card_row{
@@ -78,6 +79,7 @@
     align-items: center;
 }
 .goal_page_is_done {
+    margin-top: 2em;
     display: flex;
     margin-left: auto;
     margin-right: auto;

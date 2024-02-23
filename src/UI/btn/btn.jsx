@@ -12,7 +12,7 @@ function StyledBtn(props) {
         padding: "0.5em",
         borderRadius: "1em",
         backgroundColor: props.backgroundColor,
-        fontSize: "1.1em",
+        fontSize: "1.2em",
 
     }
     

@@ -1,15 +1,15 @@
 .tooltip {
-    position: absolute;
-
+    
     border: 1px solid #ccc;
     padding: 5px;
     border-radius: 4px;
     font-size: 14px;
     max-width: 20em;
     font-size: 1.2em;
-    color: white;
+    background: white;
+    color: black;
 }
 
-.helpIcon {
-
+.helpIcon:hover {
+   
 }

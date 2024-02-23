@@ -86,6 +86,15 @@ class Validator {
             return false
         }
     }
+    validate_password_symbols(password) {
+        const is_12345 = !password.includes("12345")
+        const is_qwert = !password.includes("qwert")
+        const pattern = /^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9]+$/;
+        if (!pattern.test(password)) {
+            return false
+        }
+        return is_12345 && is_qwert
+    }
     validate_repeat_password(password, password_repeat) {
         if (password === password_repeat) {
             return true

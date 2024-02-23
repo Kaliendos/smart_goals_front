@@ -40,7 +40,12 @@ h3 {
 h2 {
     color: white;
 }
-.logout {
-    margin-left: 90%;
 
+.top_icons{
+    display: flex;
+    width: 95%;
+    justify-content: space-between;
+}
+.logout{
+    max-height: 1em;
 }

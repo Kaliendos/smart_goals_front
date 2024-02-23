@@ -27,6 +27,7 @@ function RegForm() {
         "is_username_correct": validator.validate_username(username),
         "is_password_correct": validator.validate_password(password, 50, 8),
         "isrepeatPasswordCorrect": validator.validate_repeat_password(password, repeatPassword),
+        "isPasswordSymbolsCorrect": validator.validate_password_symbols(password)
      
         
     }
@@ -63,6 +64,9 @@ function RegForm() {
         if (!validators["isUserExists"]) {
             setUsernameErr("Пользователь с таким email уже существует")
         }
+        if (!validators["isPasswordSymbolsCorrect"]) {
+            setPasswordErr("Пароль должен содержать цифры, буквы и не быть популярным")
+        }
 
     }
   
@@ -75,7 +79,11 @@ function RegForm() {
         validator.register_validators(validators)
      
         if (validator.is_valid()) {
-            await register_user(username, password)
+            const res = await register_user(username, password)
+            if (res.status !== 201) {
+               alert("Что то пошло не так, попробуйте подобрать более надежный пароль")
+                return
+            }
             navigate("/auth")
         }
     };
@@ -135,8 +143,9 @@ function RegForm() {
                     />
                 </div>
                     <div className="btn_group">
-                       <Link to="/auth"> <button style={style} type="button">Войти</button></Link>
-                    <StyledBtn handler={(e) => { handleSubmit(e) }} text="Регистрация" backgroundColor="green" />
+                        <StyledBtn handler={(e) => { handleSubmit(e) }} text="Зарегистрироваться" backgroundColor="green" />
+                        <span>Уже есть аккаунт ?</span>
+                        <Link to="/auth"> <span className="login_span">Войти</span></Link>
                 </div>
 
             </div>

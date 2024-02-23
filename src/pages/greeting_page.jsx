@@ -1,7 +1,17 @@
 ﻿import StyledBtn from '../UI/btn/btn';
 import './greeting.css'
 import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
+import { is_authenticated } from '../components/auth/auth_utils';
+import { useEffect } from 'react';
 function Greeting() {
+
+    const navigate = useNavigate()
+    useEffect(() => {
+        if (is_authenticated()) {
+            navigate("/goals/")
+        }
+    }, [])
     return (
         <div className="content">
             <h1>SMART Goals - управляйте своими целями</h1>

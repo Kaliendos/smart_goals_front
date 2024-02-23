@@ -1,54 +1,94 @@
-    .modal{
-        height: 100%;
-        width: 100%;
-        background-color: rgba(0,0,0,0.4);
-        position: fixed;
-        top: 0;
-        left: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transform: scale(0);
-    }
+.modal {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: scale(0);
+    z-index: 1;
+    overflow-y: auto;
+}
 
-    .modal.active{
-        transform: scale(1);
-    }
 
-    .modal_content{
-        position: relative;
-        padding: 3em;
-        border-radius: 1em;
-        background-color: white;
+        .modal.active {
+            transform: scale(1);
+        }
 
-    }
-    .form_content{
+.modal_content {
+    position: relative;
+    padding: 3em;
+    border-radius: 1em;
+    background-color: white;
+    overflow: auto;
+
+}
+    .form_content {
         display: flex;
         flex-direction: column;
-        gap:1em;
+        gap: 1em;
     }
-    .form_row{
+
+
+@media (max-width: 500px) {
+    .modal_content {
+        width: 70%;
+        height: 83%;
+    }
+}
+@media (max-height: 956px) {
+    .modal_content {
+        height:  35em;
+    }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+    .modal_content {
+        width: 60%;
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1500px) {
+
+        .modal_content{
+            width: 60%;
+        
+        }
+   
+}
+@media (min-width: 1500px) {
+
+    .modal_content {
+        width: 40%;
+    }
+}
+
+    .form_row {
         display: flex;
         flex-direction: column;
     }
-    .form_row>input{
 
-        height: 1.5em;
-        font-size: 16px;
-        padding: 0.5em;
-        border-radius: 1em;
-    }
-    .create_btn{
-        width: 100%;
-        margin-top: 1em;
-        background-color: green;
-        color: white;
-        height: 2em;
-        border-radius: 1em;
-        border: none;
-        font-size: 1.2em;
-    }
-    .close_btn{
+        .form_row > input {
+            height: 1.5em;
+            font-size: 16px;
+            padding: 0.5em;
+            border-radius: 1em;
+        }
+
+.create_btn {
+    width: 100%;
+    margin-top: 1em;
+    background-color: green;
+    color: white;
+    height: 2em;
+    border-radius: 1em;
+    border: none;
+    font-size: 1.2em;
+}
+
+    .close_btn {
         color: white;
         background-color: red;
         border: none;

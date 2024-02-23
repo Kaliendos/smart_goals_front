@@ -9,12 +9,16 @@
 .login_form_content {
     display: flex;
     flex-direction: column;
-  
     gap: 1em;
 }
 .btn_group{
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    gap: 0.5em;
+}
+.reg_span{
+    font-size: 1.1em;
 }
 @media (max-width: 500px) {
     .login_form {

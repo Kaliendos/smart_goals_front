@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import "./login.css"
 import StyledBtn from "../../UI/btn/btn";
 import { Link } from "react-router-dom"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEye } from '@fortawesome/free-solid-svg-icons'
 
 
 function LoginForm() {
@@ -11,6 +13,7 @@ function LoginForm() {
     const [password, setPassword] = useState("");
 
     const [errPassword, setErrPassword] = useState("")
+    const [showPassword, setShowPassword] = useState("password")
 
 
     const navigate = useNavigate();
@@ -22,7 +25,15 @@ function LoginForm() {
 
     const handlePasswordChange = (event) => {
         setPassword(event.target.value);
+        setErrPassword("")
     };
+    const switchShowPasword = () =>{
+        if (showPassword === "password") {
+            setShowPassword("text")
+        } else {
+            setShowPassword("password")
+        }
+    }
     
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -38,6 +49,7 @@ function LoginForm() {
         }
     };
 
+    const icon = <FontAwesomeIcon icon={faEye} color="white" fontSize="1.2em" onClick={() => switchShowPasword()} />
 
     return (
         <form onSubmit={handleSubmit} className="login_form">
@@ -52,21 +64,23 @@ function LoginForm() {
                         required
                     />
                 </div>
+                {icon}
                 <div className="form_row">
                     <input
                         placeholder="пароль"
-                        type="password"
+                        type={showPassword}
                         id="password"
                         value={password}
                         onChange={handlePasswordChange}
                         required
-                    /> 
+                    />
                 </div>
-                <span color="red">{errPassword}</span>
+                <span style={{color:"red"} }>{errPassword}</span>
                 <div className="btn_group">
-                    <StyledBtn handler={handleSubmit} text="Войти" backgroundColor="green" is_active={ true} />
+                    <StyledBtn handler={handleSubmit} text="Войти" backgroundColor="green" is_active={true} />
+                    <span>Нет аккаунта ?</span>
                     <Link to="/registration">
-                        <StyledBtn handler={() => { }} text="Регистрация" backgroundColor="green" />
+                        <span className="reg_span">Зарегистрироваться</span>
                     </Link>
                 </div>
                 
